@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unblock Hub</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+
+        .button-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); /* Responsive grid */
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .button-grid a {
+            display: block;
+            padding: 15px 10px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            transition: background-color 0.3s ease, transform 0.1s ease;
+            white-space: nowrap; /* Prevent text wrapping */
+            overflow: hidden;
+            text-overflow: ellipsis; /* Add ellipsis if text overflows */
+        }
+
+        .button-grid a:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+
+        .url-input-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .url-input-container input[type="text"] {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+
+        .url-input-container button {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .url-input-container button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Unblock Hub</h1>
+
+        <div class="button-grid">
+            <a href="https://www.google.com" target="_self">Google</a>
+            <a href="https://www.youtube.com" target="_self">YouTube</a>
+            <a href="https://poki.com" target="_self">Poki</a>
+            <a href="https://www.crazygames.com" target="_self">CrazyGames</a>
+            <a href="https://now.gg" target="_self">Now.gg</a>
+        </div>
+
+        <div class="url-input-container">
+            <input type="text" id="urlInput" placeholder="Enter URL (e.g., google.com)">
+            <button onclick="goToUrl()">Go</button>
+        </div>
+    </div>
+
+    <script>
+        function goToUrl() {
+            const urlInput = document.getElementById('urlInput').value;
+            let url = urlInput.trim(); // Remove leading/trailing whitespace
+
+            // Basic validation and add protocol if missing
+            if (url) {
+                if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                    url = 'https://' + url; // Default to https
+                }
+                window.location.href = url; // Navigate to the URL in the same tab
+            }
+        }
+
+        // Allow pressing Enter key in the input field
+        document.getElementById('urlInput').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); // Prevent default form submission
+                goToUrl();
+            }
+        });
+    </script>
+
+</body>
+</html>
